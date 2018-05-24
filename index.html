@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+     <link href="https://fonts.googleapis.com/css?family=Quintessential" rel="stylesheet">
+    <title>berlyn</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="http://banadergulf.net/123/css/animate.css" rel="stylesheet">
+    <link href="http://banadergulf.net/123/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://banadergulf.net/123/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- ESTILOS PLUGINS -->
+    <link rel="stylesheet" href="http://banadergulf.net/123/css/themify-icons.css">
+    <!-- FONT-AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://banadergulf.net/123/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+  <script>
+  // mi filtro inicio
+  $(document).ready(function(){
+
+      $(".filter-button").click(function(){
+          var value = $(this).attr('data-filter');
+
+          if(value == "all")
+          {
+
+              $('.filter').show('1000');
+          }
+          else
+          {
+
+              $(".filter").not('.'+value).hide('3000');
+              $('.filter').filter('.'+value).show('3000');
+
+          }
+      });
+
+      if ($(".filter-button").removeClass("active")) {
+              $(this).removeClass("active");
+          }
+              $(this).addClass("active");
+
+      });
+
+  //end de mi filtro inicio
+      var Layout = function () {
+
+      // detector de movil
+      var isMobileDevice = function() {
+          return  ((
+              navigator.userAgent.match(/Android/i) ||
+              navigator.userAgent.match(/BlackBerry/i) ||
+              navigator.userAgent.match(/iPhone|iPad|iPod/i) ||
+              navigator.userAgent.match(/Opera Mini/i) ||
+              navigator.userAgent.match(/IEMobile/i)
+          ) ? true : false);
+      }
+
+      // para uso del scroll
+      var handleHeaderOnScroll = function() {
+          if ($(window).scrollTop() > 60) {
+              $("body").addClass("page-on-scroll");
+          } else {
+              $("body").removeClass("page-on-scroll");
+          }
+      }
+
+      // Handle Header
+      var handleOnePageHeader = function() {
+          // jQuery navbar
+          if ($('.navbar').offset().top > 150) {
+              $('.navbar-fixed-top').addClass('top-nav-collapse');
+          }
+          $(window).scroll(function() {
+              if ($('.navbar').offset().top > 150) {
+                  $('.navbar-fixed-top').addClass('top-nav-collapse');
+              } else {
+                  $('.navbar-fixed-top').removeClass('top-nav-collapse');
+              }
+          });
+
+          var $offset = 0;
+          $offset = $(".navbar-fixed-top").height()-20;
+
+          // jQuery para el derrumbar el scroll este requiere de jQuery Easing plugin
+          $('.js_nav-item a').bind('click', function(event) {
+              var $position = $($(this).attr('href')).offset().top;
+              $('html, body').stop().animate({
+                  scrollTop: $position - $offset
+              }, 600);
+              event.preventDefault();
+          });
+
+          var $scrollspy = $('body').scrollspy({target: '.navbar-fixed-top', offset: $offset+2});
+          // navbar derrumbar cuando cliquemos
+          $(window).scroll(function() {
+              $('.navbar-collapse.in').collapse('hide');
+          });
+      }
+
+      // carousel
+      var handleCarousel = function() {
+          var $item = $('.carousel .item');
+          var $wHeight = $(window).height();
+          $item.eq(0).addClass('active');
+          $item.height($wHeight);
+          $item.addClass('full-screen');
+
+          $('.carousel img').each(function() {
+              var $src = $(this).attr('src');
+              var $color = $(this).attr('data-color');
+              $(this).parent().css({
+                  'background-image' : 'url(' + $src + ')',
+                  'background-color' : $color
+              });
+              $(this).remove();
+          });
+
+          $(window).on('resize', function (){
+              $wHeight = $(window).height();
+              $item.height($wHeight);
+          });
+      }
+
+      // modificacion del elemento height
+      var handleHeight = function() {
+         $('[data-auto-height]').each(function() {
+              var parent = $(this);
+              var items = $('[data-height]', parent);
+              var height = 0;
+              var mode = parent.attr('data-mode');
+              var offset = parseInt(parent.attr('data-offset') ? parent.attr('data-offset') : 0);
+
+              items.each(function() {
+                  if ($(this).attr('data-height') == "height") {
+                      $(this).css('height', '');
+                  } else {
+                      $(this).css('min-height', '');
+                  }
+
+                  var height_ = (mode == 'base-height' ? $(this).outerHeight() : $(this).outerHeight(true));
+                  if (height_ > height) {
+                      height = height_;
+                  }
+              });
+
+              height = height + offset;
+
+              items.each(function() {
+                  if ($(this).attr('data-height') == "height") {
+                      $(this).css('height', height);
+                  } else {
+                      $(this).css('min-height', height);
+                  }
+              });
+
+              if(parent.attr('data-related')) {
+                  $(parent.attr('data-related')).css('height', parent.height());
+              }
+         });
+      }
+
+      // trabajo del popup
+      var handleWorkPopup = function() {
+          var overlay = $('.work-popup-overlay'),
+              close = $('.work-popup-close'),
+              trigger = $('.work-popup-trigger');
+
+          trigger.on('click', function() {
+              $(this).find('.work-popup-overlay').removeClass('work-popup-overlay-show');
+              $(this).find('.work-popup-overlay').addClass('work-popup-overlay-show');
+          });
+
+          close.on('click', function(e) {
+              e.stopPropagation();
+              overlay.removeClass('work-popup-overlay-show');
+          });
+      }
+
+      return {
+          init: function () {
+              // Reiniciar el header fijo setup
+              handleHeaderOnScroll();
+              handleOnePageHeader(); // Inicia el header initial header
+              handleCarousel(); // initial setup for carousel inicia el setup del carousel
+              handleHeight(); //inicia el setup para el grupo del elemento height
+              handleWorkPopup(); // inicia el setup del grpo de trabajo popup
+              // minimiza el header del scroll de la pagina
+              $(window).scroll(function() {
+                  handleHeaderOnScroll();
+              });
+          },
+          //Obtener el viewport basado en http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+          // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+          getViewPort: function() {
+              var e = window,
+                  a = 'inner';
+              if (!('innerWidth' in window)) {
+                  a = 'client';
+                  e = document.documentElement || document.body;
+              }
+
+              return {
+                  width: e[a + 'Width'],
+                  height: e[a + 'Height']
+              };
+            },
+      };
+  }();
+  /inicializacion de parametros
+  $(document).ready(function() {
+  Layout.init();
+  });
+
+
+  </script>
+  </head>
+  <body id="body" data-spy="scroll" data-target=".header">
+    <!--MENU-->
+    <!--INCIO DEL HEADER-->
+    <header class="header navbar-fixed-top">
+      <!--INICIO DEL NAV-->
+        <nav class="navbar" role="navegation">
+          <!--INICIO DE MI CONTAINER-->
+          <div class="container">
+            <div class="menu-container js_nav-item">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="sr-only"></span>
+                <span class="toggle-icon"></span>
+
+              </button>
+
+            </div>
+
+
+
+
+            <!--INICIO DE COLLAPSE-->
+            <div class="collapse navbar-collapse nav-collapse">
+              <div class="menu-container">
+                <!--INICIO DE LOS ELEMENTOS DEL MENU-->
+              <ul class="nav navbar-nav navbar-nav-right">
+                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#inicio">INICIO</a></li>
+                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#tienda">SERVICIOS</a></li>
+                <!--<li><a href="#trabajos">TRABAJOS</a></li>-->
+                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#tarot">TAROT</a></li>
+                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#nosotros">NOSOTROS</a></li>
+                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#contactanos">CONTÁCTANOS</a></li>
+              </ul>
+              <!--FIN DEL LOS ELEMENTOS DEL MENU-->
+              </div>
+            </div>
+            <!--FIN DE COLLAPSE-->
+
+
+          </div>
+          <!--FIN DEL CONTAINER-->
+        </nav>
+      <!--FIN DEL NAV-->
+    </header>
+    <!--FIN DEL HEADER-->
+    <!--INICIO DEL BANNERS INICIAL-->
+    <div class="promo-block">
+      <div class="container">
+        <div class="margin-b-100">
+          <h1 class="promo-block-title">Llámanos!</h1>
+          <div class="margin-position">
+            <p class="promo-block-text nav rede"><span class="fa fa-whatsapp"></span>+593 097 909 8575</p>
+          </div>
+
+        </div>
+
+          <!--PARA COLOCAR UN VIDEO EN LA PRESENTACION DEL BANNERS-->
+         <!--<a class="js_popup-youtube btn-theme btn-theme-md btn-white-bg text-uppercase" href="https://www.youtube.com/watch?v=0qisGSwZym4" title="Intro Video"><i class="btn-icon icon-control-play"></i> Watch Intro Video</a>
+      --></div>
+
+    </div>
+    <br><br><br>
+
+    <!--SEGUNDO BANNERS-->
+    <div class="container-fluid">
+      <div class="panner2" id="contenido1">
+        <!-- SERVIVIOS-->
+
+          <div id="servicios">
+            <div class="section-title">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                    <article class="section-title-body">
+                      <h2 class="head-title">Servicios</h2>
+                    <!--  <p class="head-text">
+                        .
+                      </p> -->
+                      <br>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/section-title-->
+            <!-- Fin Divider  -->
+
+            <!-- TITULO DE LA PRIMERA FILA -->
+
+            <div class="bg-color-sky-light" data-auto-height="true">
+              <div class="content-lg container">
+                <div class="row row-space-2 margin-b-4">
+                  <div class="col-sm-4 sm-margin-b-4">
+                    <div class="service" data-height="height">
+                      <div class="service-info">
+                        <h3>Amarres</h3>
+                        <div class="backamarres">
+                          <p class="margin-b-5 overlay">Este tipo de conjuro es capaz de generar sentimiento de amor hacia la persona que lo realiza.<!-- La esencia es conseguir unirte a la persona que amas haciendo uso de esoterismo y ciencias ocultas.--></p>
+                        </div>
+
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 sm-margin-b-4">
+                    <div class="service bg-color-base wow fadeInDown" data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
+                      <div class="service-element">
+                        <i class="service-icon color-white icon-screen-tablet"></i>
+                      </div>
+                      <div class="service-info">
+                        <h3 class="color-white">Hechizos</h3>
+                        <div class="backhechizos">
+                          <p class="color-white margin-b-5 overlay">Rituales de magia blanca para endulzar almas, conviertiendosé agradable y tolerante ...</p>
+                        </div>
+
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="service" data-height="height">
+                      <div class="service-element">
+                        <i class="service-icon icon-badge"></i>
+                      </div>
+                      <div class="service-info">
+                        <h3>Conjuros</h3>
+                        <div class="backconjuros">
+                          <p class="margin-b-5 overlay">Implican rituales con herramientas e instrumentos tales como velas, hierbas, flores, hojas de papel ...</p>
+                        </div>
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- FIN DE LA PRIMERA FILA-->
+
+                <div class="row row-space-2">
+                  <div class="col-sm-4 sm-margin-b-4">
+                    <div class="service" data-height="height">
+                      <div class="service-element">
+                        <i class="service-icon icon-notebook"></i>
+                      </div>
+                      <div class="service-info">
+                        <h3>Rituales</h3>
+                        <div class="backrituales">
+                          <p class="margin-b-5 overlay">Existen desde los inicios de las tribus y reino de la antigüedad, los poderes superiores para traer vibras positivas... </p>
+                        </div>
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 sm-margin-b-4">
+                    <div class="service" data-height="height">
+                      <div class="service-element">
+                        <i class="service-icon icon-speedometer"></i>
+                      </div>
+                      <div class="service-info">
+                        <h3>Brujería</h3>
+                        <div class="backbrujeria">
+                          <p class="margin-b-5 overlay">Brujería</p>
+                        </div>
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="service" data-height="height">
+                      <div class="service-element">
+                        <i class="service-icon icon-badge"></i>
+                      </div>
+                      <div class="service-info">
+                        <h3>Retorno de parejas</h3>
+                        <div class="backreturn">
+                        <p class="margin-b-5 overlay">Esa persona regresará y siempre estará a su lado sin dudarlo, amarres de vudú, con foto u otro objeto ...</p>
+                        </div>
+
+                      </div>
+                      <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- FIN DE LA SEGUNDA FILA -->
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+      <!--========================FIN DE SERVICIOS==============================-->
+
+    <br><br><br>
+
+
+
+
+  <footer>
+
+  </footer>
+  <!-- Back To Top -->
+  <a href="javascript:void(0);" class="js-back-to-top back-to-top">subir</a>
+
+  <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+  <!-- CORE PLUGINS -->
+  <script src="http://banadergulf.net/123/vendor/jquery.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/jquery-migrate.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <!-- PAGE LEVEL PLUGINS -->
+  <script src="http://banadergulf.net/123/vendor/jquery.easing.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/jquery.back-to-top.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/jquery.wow.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/swiper/js/swiper.jquery.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/magnific-popup/jquery.magnific-popup.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&amp;callback=initMap" async defer></script>
+
+  <!-- PAGE LEVEL SCRIPTS -->
+  <script src="http://banadergulf.net/123/js/layout.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/js/components/wow.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/js/components/swiper.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/js/components/maginific-popup.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/js/components/masonry.min.js" type="text/javascript"></script>
+  <script src="http://banadergulf.net/123/js/components/gmap.min.js" type="text/javascript"></script>
+
+  </body>
+</html>
+<!--
+<html>
+<head>
+</head>
+<body>
+
+<div class="top1">
+  <table>
+<tr>
+  <td><strong><img class="header" src="http://psneo.com/portal/wp-content/uploads/2014/10/wow.jpg"
+  /></strong></td>
+  <td><strong><div class="texto1" style="color:White"><h1>Bienvenidos a WoW Draenor</h1></div></strong></td>
+  </tr>
+  </table>
+  </div>
+<div class="top2">
+
+  <a href="#">Home</a>
+  <ul>
+    <li>
+      <a href="#">Juego</a>
+      <ul>
+        <li><a href="#">Razas y Clases</a>
+        </li>
+        <li><a href="#">Azeroth</a></li>
+        <li><a href="#">Historia</a></li>
+      </ul>
+    </li>
+    <ul>
+    <li><a href="#">Contactanos</a></li>
+      <ul>
+    <li><a href="#">Foro</a><ul>
+        <li><a href="#">Foro del Juego</a>
+        </li>
+      <li><a href="#">Foro de Cuenta</a></li></ul></li>
+      <ul>
+    <li><a href="#">Descargar el Juego</a></li>
+  </ul>
+</div>
+<div class="espacio">
+  <br>
+  </br>
+      </div>
+<div class="Cuerpo1">
+ <table>
+   <tr>
+     <td class="Cuerpoizq" width="72%">
+ <div class="video-responsive">
+    <iframe src="//www.youtube.com/embed/PWqGpq0-yh0" frameborder="0" allowfullscreen width="560" height="315"></iframe>
+</div>
+
+     </td>
+     <td class="Cuerpoder" width="50%">
+     <form action ="pagina2.html" method="get">
+</br>
+       </br>
+   </br>
+    </br>
+    </br>
+         <div class="ejemplo">
+         Nombre: <input type="text" name="nombre" id="nombre" required>
+         </div>
+         <div class="ejemplo">
+         Correo: <input type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$">
+         </div>
+         <div class="ejemplo">
+         Nick: <input type="text" name="nick" id="nick" required>
+         </div>
+
+         <div class="ejemplo">
+         Pswd: <input type="password" name="pswd" id="pswd" required>
+         </dir>
+    </br>
+  <select name="pais">
+    <option value="Spain"> Spain </option>
+    <option value="France"> France </option>
+    <option value="England"> England </option>
+    <option value="other"> Other </option>
+  </select>
+    <div class="ejemplo">
+      En caso de otro país indicar cuál: </br><input type="text" name="notropais">
+         </dir>
+         </br>
+
+         <input type="checkbox" name="cb" value="cb"> Deseo recibir lo último vía e-mail
+
+  </br>
+<input class="myButton" type="submit" value="¡Registrarse!"></br></br>
+
+</form>
+       </div>
+     </td>
+    </tr>
+  </table>
+  <div class="espacio">
+    </br>
+  </div>
+<div class="splitter">
+  <div class="butn">
+    <div class="titulocuerpo">
+      </br>
+    <b><h1>BIENVENIDOS A WORLD OF WARCRAFT</h1></b>
+    </br>
+    </div>
+    <hr>
+  <div class="fin">
+    <h1>¿QUÉ ES WORLD OF WARCRAFT?</h1>
+</div>
+    World of Warcraft es un juego online en el que jugadores de todo el mundo asumen el papel de personajes de fantasía heroica y exploran un mundo virtual lleno de misterio, magia y aventuras sin fin.
+</br>
+</br>
+<hr>
+<div class="fin">
+<h1> FACCIONES Y RAZAS DE WARCRAFT: </h1>
+</div>
+<h4>ALIANZA Y HORDA: <h4>
+En Warcraft hay dos grandes facciones opuestas:
+  </br>
+  </br>
+  Por un lado está la noble Alianza, que comprende a los valientes humanos, los inquebrantables enanos, los místicos draenei, los ingeniosos gnomos, los espirituales elfos de la noche y los bestiales huargen.
+</br>
+</br>
+Por otro lado está la poderosas Horda, compuesta por los orcos curtidos en la batalla, los astutos trols, los descomunales tauren, los malditos Renegados, los extravagantes elfos de sangre y los arteros goblins.
+</br>
+</br>
+<hr>
+<div class="fin">
+<h1>DEFINIR TU PERSONAJE</h1>
+</div>
+Cuando creas un personaje, debes tomar dos decisiones que afectarán profundamente a cómo jugarás a World of Warcraft.
+Una de ellas es tu raza, la otra tu clase.
+</br>
+</br>
+La raza de un personaje determina su aspecto general y su facción (Horda o Alianza). La facción es importante porque solo los personajes de la misma facción pueden hablar y colaborar entre ellos. No podrás comunicarte ni formar grupos con miembros de la facción opuesta. La raza es básicamente una elección social.
+</br>
+</br>
+Tu clase, por otro lado, determina qué puede hacer o no tu personaje. Cada clase ofrece una experiencia de juego totalmente diferente, así que la mejor forma de averiguar qué clase es la adecuada para ti es crear varios personajes distintos para tener una idea de cómo es cada clase.
+</br>
+</br>
+<hr>
+<div class="fin">
+<h5>
+(Para entrar en Azeroth completa el cuestionario de registro y descárgate el juego ¡A qué esperas!¡Miles de aventuras te aguardan!)</h5>
+</div>
+</div>
+</body>
+</html>
+-->
