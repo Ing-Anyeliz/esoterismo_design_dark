@@ -1,0 +1,477 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Quintessential', cursive;
+}
+html, html a, body {
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: #81848f;
+  outline: 0;
+
+}
+
+a:focus, a:hover, a:active {
+  outline: 0;
+  color: rgb(108, 36, 1);
+  text-decoration: none;
+}
+/*
+body{
+  background: url(https://img.etsystatic.com/il/aae7ca/953297164/il_570xN.953297164_3p7s.jpg?version=0);
+
+  background-size: cover;
+  position: relative;
+}*/
+.header-scroll-btton.smoth {
+    bottom: 20px;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.header-scroll-btton.smoth a {
+    border: 1px solid;
+    border-radius: 100px;
+    color: #ffffff;
+    display: block;
+    height: 50px;
+    line-height: 3.6;
+    text-align: center;
+    width: 25px;
+    position: relative;
+    margin-right: 1px;
+}
+
+.header-scroll-btton a span {
+    -webkit-animation-name: out_douwn;
+    animation-name: out_douwn;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    left: 50%;
+    position: absolute;
+    top: 10%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+@-webkit-keyframes out_douwn {
+    0% {
+        top: 10%
+    }
+    50% {
+        top: 60%
+    }
+    100% {
+        top: 10%
+    }
+}
+
+@keyframes out_douwn {
+    0% {
+        top: 20%
+    }
+    50% {
+        top: 50%
+    }
+    100% {
+        top: 20%
+    }
+}
+
+
+/*===================INICIO DEL MENU======================*/
+header{
+ width: 100%;
+ height:150px;
+ overflow: hidden;
+ position: fixed;
+ z-index:999;
+ background-color: black;
+ -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+header{
+
+  box-shadow: 0 30px 30px rgb(8, 7, 7);
+}
+header nav .navbar{position:relative;min-height:150px;margin-bottom:20px;border:1px solid transparent}
+/* Fixed Top */
+.navbar-fixed-top .navbar-collapse {
+  max-height: 100%;
+}
+
+nav{
+  margin-top: 80px;
+
+}
+nav a{
+  color:white;
+  margin-right: 20px;
+  text-decoration: none;
+  /*float:right;*/
+}
+nav ul li{
+display: inline;
+margin-left: 0px;
+font-size: 18px;
+padding-left: 20px;
+}
+
+
+/*colocar la imagen del banners1 */
+/*
+.positionbanners{
+padding-top:150px;
+
+} */
+/*------------------------------------------------------------------
+  	[Promo Block]
+------------------------------------------------------------------*/
+.promo-block {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: url("http://luleshe.com/data/out/12/wallpaper2you_553690.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 250px 0 200px;
+}
+
+.promo-block:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(81, 87, 105, 0.4);
+  content: " ";
+}
+
+.promo-block .promo-block-title {
+  font-size: 70px;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .promo-block .promo-block-title {
+    font-size: 50px;
+  }
+}
+
+.promo-block .promo-block-text {
+  font-size: 25px;
+  color: #fff;
+}
+/*
+.banners {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: url("http://luleshe.com/data/out/12/wallpaper2you_553690.jpg") no-repeat;*/
+/*  background: url("https://amarreyhechizosancestrales.com/wp-content/uploads/2015/04/BANNER-2.jpg") no-repeat; */
+/*  background-size: cover;
+  background-position: center center;
+  padding: 250px 0 450px;
+  transition-duration: 1s;
+
+}*/
+
+/*.banners:before{
+
+  position: absolute;
+  top:0px;
+  left: 0;
+  width: 100%;
+  height:100%;
+  z-index: -1;
+  content: " ";
+
+}
+.banners:hover{
+  background-size: 120%;
+
+
+}
+*/
+
+
+/*===================FIN DEL MENU======================*/
+/*LA CLASE navbar*/
+.header .navbar{
+
+  margin-bottom: 0;
+  border-bottom: none;
+  transition-duration:300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+
+}
+
+
+/* Navbar Toggle */
+.header .navbar-toggle {
+  width: 25px;
+  height: 25px;
+  border: none;
+  padding: 0;
+  margin: 35px 0;
+}
+
+.header .navbar-toggle .toggle-icon {
+  position: relative;
+  width: 21px;
+  height: 1px;
+  display: inline-block;
+  background: white;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .navbar-toggle .toggle-icon:before, .header .navbar-toggle .toggle-icon:after {
+  position: absolute;
+  left: 0;
+  background: white;
+  content: " ";
+}
+
+.header .navbar-toggle .toggle-icon:before {
+  width: 10px;
+  height: 1px;
+  bottom: 10px;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  transform: rotate(0);
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .navbar-toggle .toggle-icon:after {
+  width: 16px;
+  height: 1px;
+  top: -5px;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  transform: rotate(0);
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .navbar-toggle:hover .toggle-icon {
+  background: #fe4e20;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .navbar-toggle:hover .toggle-icon:before, .header .navbar-toggle:hover .toggle-icon:after {
+  width: 21px;
+  height: 1px;
+  background: #fe4e20;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .navbar-toggle:hover .toggle-icon.is-clicked {
+  background: rgba(81, 87, 105, 0);
+}
+
+/* Navbar */
+.header .navbar-nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+/* Nav */
+.header .nav-item {
+  position: relative;
+  display: block;
+}
+
+.header .nav-item:last-child .nav-item-child {
+  padding-right: 0;
+}
+
+.header .nav-item.active .nav-item-hover:after {
+  opacity: 1;
+  transition-duration: 400ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+
+}
+
+.header .nav-item:hover .nav-item-hover:after {
+  opacity: 1;
+  transition-duration: 400ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+/*Selecciona los elementos del menu*/
+.header .nav-item-child {
+  position: relative;
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 20px;
+  font-family: 'Quintessential', cursive;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 55px;
+  padding: 20px;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.header .nav-item-child:hover, .header .nav-item-child:focus {
+  background: inherit;
+  color: #fe4e20;
+}
+
+.header .nav-item-hover {
+  position: relative;
+
+}
+
+.header .nav-item-hover:after {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 9px;
+  height: 2px;
+  background: #fe4e20;
+  opacity: 0;
+  content: " ";
+  transition-duration: 400ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+
+/* Media Queries below 991px */
+@media (max-width: 991px) {
+  /* Bootstrap collapse of navigation with a maximum width: 991px
+    (Change it to any breakpoint you want to be collapsed) */
+
+  .header {
+    background: #383838;
+  }
+  .header .navbar-toggle {
+    display: block;
+  }
+  .header .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .header .navbar-collapse.collapse.in {
+    display: block !important;
+  }
+  .header .nav-collapse {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .header .navbar-nav {
+    margin: 0;
+    float: none;
+  }
+  .header .navbar-nav .nav-item {
+    float: none;
+  }
+  /* Menu Container */
+  .header .menu-container:before, .header .menu-container:after {
+    content: " ";
+    display: table;
+  }
+  .header .menu-container:after {
+    clear: both;
+  }
+
+  /* Navbar Nav */
+  .header .nav-item-child {
+    color: #515769;
+    line-height: 1.4;
+    padding: 12px 12px 12px 15px;
+  }
+  .header .nav-item-hover:after {
+    position: absolute;
+    top: 19px;
+  }
+}
+
+
+/* Media Queries below 767px */
+@media (max-width: 767px) {
+  /* Menu Container */
+  .header .menu-container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .header .navbar > .container {
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+  }
+  .header .navbar > .container > .nav-collapse {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+/* Media Queries below 992px */
+
+@media (min-width: 768px) and (max-width: 992px){
+  .navbar {
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+  }
+
+}
+
+
+/* Media Queries above 992px */
+@media (min-width: 992px) {
+  .page-on-scroll .header .navbar {
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19), 0 6px 10px rgba(0, 0, 0, 0.23);
+
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+  /* Navbar */
+  .header .navbar-nav-right {
+    float: right;
+  }
+  .page-on-scroll .header .nav-item-child {
+  color:black;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+  .page-on-scroll .header .nav-item-child:hover, .header .nav-item-child:focus {
+    background: inherit;
+    color: #17bed2;
+  }
+}
