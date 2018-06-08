@@ -567,17 +567,53 @@ fieldset[disabled] .btn-theme {
 
 /*media*/
 @media screen and (max-width: 600px) {
-  h1, h3 {
+  h1, h3 {/*
     font-size: 100% !important;
-    color: #660033 !important;
-
+    color: #660033 !important;*/
+  font-size: 50px;
 	text-align: center;
 	margin-top: 30px;
 	background-repeat: no repeat;
   }
 
   }
+@media screen and (max-width: 460px){
+  h1{
+    font-size: 45px !important;
+  }
+  h2{
+    font-size: 50px !important;
+  }
+  h3{
+    font-size: 30px !important;
+  }
 
+  .section-title-body .title_responsive{
+
+    font-size: 40px !important;
+    letter-spacing: 3px !important;
+
+  }
+}
+@media screen and (max-width:360px) {
+
+  h2{
+    font-size: 30px !important;
+    letter-spacing: 3px !important;
+  }
+  .section-title-body .title_responsive{
+
+    font-size: 35px !important;
+    letter-spacing: 1px !important;
+
+  }
+  .section-title .section-title-body{
+    margin: 0px;
+    padding: 0px 0px 0px !important;
+
+  }
+
+}
 /*------------------------------------------------------------------
   	[Pricing]
 ------------------------------------------------------------------*/
@@ -699,7 +735,7 @@ fieldset[disabled] .btn-theme {
 
 @media (max-width: 480px) {
   .promo-block .promo-block-title {
-    font-size: 50px;
+    font-size: 80px;
   }
 }
 
